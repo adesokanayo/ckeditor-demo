@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Poc</title>
+    <script src="./build/ckeditor.js"></script>
+</head>
+<body>
+    <h1>Learndeck stuff</h1>
+    <div id="editor">
+        <p>Sample html Content </p>
+
+    </div>
+    <br>
+    <button id="load">Load</button>
+    <button id="submit">Save</button>
+    <script>
+        let editor;
+        ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+ 
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link','underline','strikethrough','code','subscript,','superscript',
+         'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    } )
+    .then( newEditor => {
+        editor = newEditor;
+    } )
+    .catch( error => {
+        console.log( error );
+    } );
+
+    document.querySelector( '#submit' ).addEventListener( 'click', () => {
+    const editorData = editor.getData();
+    console.log(editorData);
+
+    // ...
+} );
+
+document.querySelector( '#load' ).addEventListener( 'click', () => {
+    const editorData = editor.setData('"{"markdown":"## GRAMMAR\n\n\n\nThis aspect of English language deals with the correct spelling and usage of words.\nIt consists of lexis and structure, parts of speech, register, etc.\nOne cannot write without knowing the correct combination of letters and words.\nThe English alphabet is made up of twenty-six letters and this letters are combined to form words.\n\nThe letters can be written in two forms. Namely:\n*  a) capital letters or upper case form\n*  b) Small letters or lower case form\t\n\n****\n### CAPITAL LETTERS\nA   B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z\n\n### SMALL LETTERS\na  b  c  d  e  f  g  h  I  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z\n\n*A word can be made of one or more letters.*\n\nExamples of one lettered words: I and A  \nExamples of two letter words: Am, an, be in,etc  \nExamples of three letter words: Are, bin, cat dog, etc  \nEach word in English language is classified according to its function in a sentence.\n****\n#### This classification is called parts of speech.\n\n\nWe have eight parts of speech, they are:   \n1. Nouns\n2. Pronouns\n3. Adjectives\n4. Verbs\n5. Adverbs\n6. Prepositions\n7. Conjunctions\n8. Interjections\n\n****\n\n\n### Register\nRegister in English language refers to a group of words peculiar to a given subject or profession.\nExamples: medicine, teaching, music, etc. A clear understanding of English grammar will go a long way in improving our communication skills."}"');
+    console.log(editorData);
+
+    // ...
+} );
+    </script>
+</body>
+</html>
